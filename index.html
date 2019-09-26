@@ -1,0 +1,29 @@
+<html>
+<head>
+	<title>Sorting Visualization</title>
+	<link rel="stylesheet" type="text/css" href="style/index.css">
+	
+</head>
+<body>
+	<div class="header">
+		<h1>Sorting Visualization</h1>
+		<div class="vars">
+				<div class="range">
+					<div class="slide"><label for="bars">#Bars</label> : <input id="bars" type="range" name="bars" min="1" max="100" value="50" oninput="setup()" onchange="setup()"><span id="b"></span></div>
+					<div class="slide"><label for="delay">Delay(ms)</label> : <input id="delay" type="range" name="delay" min="0" max="5000" value="200" oninput="setup()" onchange="setup()"><span id="d"></span></div>
+				</div>
+				<div class="sorts">
+					<input type="button" onclick="SelectionSort()" value="Selection Sort">
+					<input type="button" onclick="BubbleSort()" value="Bubble Sort">
+					<input type="button" onclick="InsertionSort()" value="Insertion Sort">
+					<input type="button" onclick="MergeSort()" value="Merge Sort">
+					<input type="button" onclick="QuickSort()" value="Quick Sort"><br><br>
+				</div>
+				<button onclick="reset()">Reset</button>
+		</div>
+	</div>
+	<div id="container">
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
