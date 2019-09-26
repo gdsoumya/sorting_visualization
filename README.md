@@ -4,7 +4,9 @@
   <img src="http://jpillora.com/github-twitter-button/img/tweet.png"
        alt="tweet button" title="Check out this awesome project for visualizing different sorting algorithms."></img>
 </a>
+<a href="https://gdsoumya.github.io/sorting_visualization" target="_blank">
 <img src="https://img.shields.io/badge/visit-try%20it!-brightgreen" alt="try it!">
+ </a>
 <br>
 
 A visualization of popular sorting algorithms made using javascript and html,css.<br>
