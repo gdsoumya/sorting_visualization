@@ -185,7 +185,7 @@ async function merge(l,m,r,d){
 }
 
 /* mergeSort() : part of merge sort algorithm, divides the bars into groups recursively
-   and merges them after sorting, --> O(logn) 
+   and merges them after sorting, --> O(nlogn) 
 */
 async function mergeSort(l,r,d){
 	if(l<r){
@@ -240,7 +240,7 @@ async function partition(l,r,d){
 }
 
 /* quickSort() : part of quick sort algorithm, 
-   divides the array of bars recursively depending on the partiotion position. --> O(logn)
+   divides the array of bars recursively depending on the partiotion position. --> O(nlogn)
 */
 async function quickSort(l,r,d){
 	if(l<r){
@@ -256,3 +256,71 @@ async function QuickSort(){
 	await quickSort(0,bars.length-1,delay);
 	fin();
 }
+
+
+// HEAP SORT
+
+/* heapify(): part of heap sort algorithm, it creates a max heap. --> O(log(n)) */
+
+async function heapify(n,i,d) 
+{ 
+    let largest = i; // Initialize largest as root 
+    let l = 2*i + 1; // left = 2*i + 1 
+    let r = 2*i + 2; // right = 2*i + 2 
+  	let id1=bars[i].split('id="')[1].split('"')[0],id2,id3;
+   	document.getElementById(id1).style.backgroundColor=selected;
+   	if(r<n){
+   		id3=bars[r].split('id="')[1].split('"')[0];
+   		document.getElementById(id3).style.backgroundColor=chng;
+   	}
+   	if(l<n){
+   		id2=bars[l].split('id="')[1].split('"')[0];
+		document.getElementById(id2).style.backgroundColor=chng;
+	}
+	await sleep(d/3.0)
+   	// If left child is larger than root 
+    if (l < n && parseInt(bars[l].split(/[:%]/)[1])>parseInt(bars[largest].split(/[:%]/)[1])) 
+        largest = l; 
+  
+    // If right child is larger than largest so far 
+    if (r < n && parseInt(bars[r].split(/[:%]/)[1])>parseInt(bars[largest].split(/[:%]/)[1])) 
+        largest = r; 
+  
+    // If largest is not root 
+    if (largest != i) 
+    { 
+    	let t=bars[i];bars[i]=bars[largest];bars[largest]=t;
+  		container.innerHTML=bars.join(' ');
+  		document.getElementById(id1).style.backgroundColor=selected;
+  		if(r<n)
+	   		document.getElementById(id3).style.backgroundColor=chng;
+	   	if(l<n)
+			document.getElementById(id2).style.backgroundColor=chng;
+		await sleep(d/3.0)
+		container.innerHTML=bars.join(' ');
+        // Recursively heapify the affected sub-tree 
+        await heapify(n,largest,d); 
+    }
+    container.innerHTML=bars.join(' ');
+} 
+  
+/* HeapSort(): Sorts the array using heapsort algorithm --> O(nlog(n))*/
+ 
+async function HeapSort() 
+{ 
+	let delay=start();
+	let n=bars.length;
+    // Build heap (rearrange array) 
+    for (let i = n / 2 - 1; i >= 0; i--) 
+        await heapify(n,i,delay); 
+  
+    // One by one extract an element from heap 
+    for (let i=n-1; i>=0; i--) 
+    { 
+    	let t=bars[0];bars[0]=bars[i];bars[i]=t;
+  		container.innerHTML=bars.join(' ');
+        // call max heapify on the reduced heap 
+       await heapify(i,0,delay); 
+    } 
+    fin();
+} 
