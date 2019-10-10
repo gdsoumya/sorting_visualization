@@ -17,5 +17,6 @@ A visualization of popular sorting algorithms made using javascript and html,css
 3. Insertion Sort
 4. Merge Sort
 5. Quick Sort
+6. Heap Sort
 
 Try this at : [Sorting Visualization](https://gdsoumya.github.io/sorting_visualization)
